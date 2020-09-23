@@ -1,0 +1,87 @@
+.appBody {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: burlywood;
+}
+
+.appBody, .quote-input {
+  font-family: 'Lucida Sans', 
+  'Lucida Sans Regular', 
+  'Lucida Grande', 
+  'Lucida Sans Unicode', 
+  Geneva, 
+  Verdana, 
+  sans-serif;
+}
+
+.container {
+  background-color: azure;
+  padding: 1rem;
+  border-radius: .5rem;
+  width: 700px;
+  max-width: 90%;
+}
+
+.timer{
+  font-size: 2.5rem;
+  color: azure;
+  font-weight: bold;
+}
+
+.quote-display{
+  margin-bottom: 1rem;
+  margin-left: calc(1rem + 2px);
+  margin-right: calc(1rem + 2px);
+}
+
+.quote-input {
+  background-color: transparent;
+  border: 2px solid #A1922E;
+  outline: none;
+  width: 95%;
+  height: 8rem;
+  margin: auto;
+  resize: none;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  border-radius: .5rem;
+}
+
+.quote-input:focus{
+  border-color: black;
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+  text-decoration: underline;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.table-container {
+  width: 90%;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
