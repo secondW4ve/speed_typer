@@ -6,18 +6,25 @@ const ResultTable = (props) => {
 
   return (
     <div>
-      <table>
-        <tr>
-          <th>The number of letters in the quote</th>
-          <th>Time spent</th>
-        </tr>
-        {results.map(result => 
+      {results.length === 0 ? 
+        <span></span> 
+      : 
+        <table>
           <tr>
-            <th>{result.countOfLetters}</th>
-            <th>{result.timeSpent}</th>
+            <th>The number of letters in the quote</th>
+            <th>The number of mistakes made</th>
+            <th>Time spent</th>
           </tr>
-        )}
-      </table>
+          {results.map(result => 
+            <tr>
+              <th>{result.countOfLetters}</th>
+              <th>{result.countOfMistakes}</th>
+              <th>{result.timeSpent}</th>
+            </tr>
+          )}
+        </table>
+      }
+      
     </div>
   )
 }

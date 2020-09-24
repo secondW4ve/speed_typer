@@ -7,10 +7,11 @@ const App = () => {
 
   const [quoteDisplayed, setQuoteDisplayed] = useState(undefined);
   const [statuses, setStatuses] = useState(undefined);
-  const [timer, setTimer] = useState(0);
+  const [timer, setTimer] = useState('0:00');
   const [startTime, setStartTime] = useState(null);
   const [intervalId, setIntervalId] = useState(null);
   const [results, setResults] = useState([]);
+  const [countOfMistakes, setCountOfMistakes] = useState(0);
 
   const textAreaRef = useRef(null);
 
@@ -22,7 +23,7 @@ const App = () => {
   useEffect(() => {
     if (quoteDisplayed !== undefined){
       clearInterval(intervalId);
-      setTimer(0);
+      setTimer('0:00');
       setStartTime(new Date());
     }
   }, [quoteDisplayed]);
@@ -42,7 +43,8 @@ const App = () => {
       if (result === undefined) {
         saveResult();
         getNewQuote();
-        textAreaRef.current.value = null;
+        setCountOfMistakes(0);
+        textAreaRef.current.value = '';
       }
     }
   }, [statuses]);
@@ -55,6 +57,8 @@ const App = () => {
         stats[index] = 1;
       } else {
         stats[index] = -1;
+        let mistakesNumber = countOfMistakes;
+        setCountOfMistakes(++mistakesNumber);
       }
     })
     for (let i = inputValue.length; i < quoteDisplayed.length; i++){
@@ -78,7 +82,7 @@ const App = () => {
   }
   
   const getTimerTime = () => {
-    return Math.floor((new Date() - startTime) / 1000);
+    return millisecondsToTimer(new Date() - startTime);
   }
 
   const saveResult = () => {
@@ -86,9 +90,23 @@ const App = () => {
     resultsArray.push({
       countOfLetters: quoteDisplayed.length,
       timeSpent: timer,
+      countOfMistakes: countOfMistakes,
     });
     setResults([...resultsArray]);
   }
+
+  const pad = n => ('0' + n).slice(-2);
+
+  const millisecondsToTimer = ms => {
+    if (ms < 0) {
+      return '0:00';
+    }
+    const minutes = Math.floor(ms / 60000);
+    const seconds = pad(
+      Math.floor((ms - minutes * 60000) / 1000)
+    );
+    return `${minutes}:${seconds}`;
+  };
 
   return (
     <div className = "appBody">

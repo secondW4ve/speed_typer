@@ -24,6 +24,7 @@ const QuoteDisplay = (props) => {
          color="#00BFFF"
          height={50}
          width={50}
+         style = {{textAlign: "center"}}
         /> 
         :
         <div>
